@@ -1,0 +1,36 @@
+﻿<div class="calendar">
+        <div class="calendar-navs" *ngIf="hasChange">
+          <div class="month-nav">
+            <button (click)="prevMonth()">&lt;</button>
+            <span class="p4">{{ currentDate.format('MMMM') }}</span>
+            <button (click)="nextMonth()">&gt;</button>
+          </div>
+          <div class="year-nav">
+            <button (click)="prevYear()">&lt;</button>
+            <span>{{ currentDate.format('YYYY') }}</span>
+            <button (click)="nextYear()">&gt;</button>
+          </div>
+        </div>
+        <div class="month-grid">
+          <div class="day-names">
+            <div *ngFor="let name of dayNames" class="day-name p9">
+              {{ name }}
+            </div>
+          </div>
+          <div class="weeks">
+            <div *ngFor="let week of weeks" class="week">
+              <ng-container *ngFor="let day of week">
+                <div class="week-date disabled" *ngIf="!isSelectedMonth(day.mDate)">
+                  <span class="date-text">{{ day.mDate.date() }}</span>
+                </div>
+                <div class="week-date enabled"
+                     *ngIf="isSelectedMonth(day.mDate)"
+                     (click)="selectDate(day)"
+                     [ngClass]="{ today: day.today, selected: day.selected }">
+                  <span class="date-text">{{ day.mDate.date() }}</span>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
