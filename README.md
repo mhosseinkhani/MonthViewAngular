@@ -29,3 +29,5 @@ yarn add moment
 Install via **bower**
 ```shell
 bower install moment --save
+
+``` add to NgModule
